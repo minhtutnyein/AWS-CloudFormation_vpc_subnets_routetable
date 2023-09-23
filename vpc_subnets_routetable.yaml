@@ -1,0 +1,123 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Private Subnets in ap-southeast-1 default VPC'
+Resources:
+  privateSubnet1: #PrivateSubnet1
+    Type: AWS::EC2::Subnet
+    Properties:
+        #AssignIpv6AddressOnCreation: Boolean
+        AvailabilityZone: 'ap-southeast-1a'
+        #AvailabilityZoneId: String
+        CidrBlock: '172.31.48.0/20'
+        #EnableDns64: Boolean
+        #Ipv6CidrBlock: String
+        #Ipv6Native: Boolean
+        MapPublicIpOnLaunch: false
+        #OutpostArn: String
+        #PrivateDnsNameOptionsOnLaunch: 
+        #  PrivateDnsNameOptionsOnLaunch
+        Tags: 
+          - Key: 'Name'
+            Value: 'default-private-subnet1'
+          - Key: 'Region'
+            Value: 'Singapore'
+          - Key: 'Environment'
+            Value: 'Non Production'
+        VpcId: 'vpc-07d7735219367024d'
+  routeTableforprivateSubnet1: #forprivateSubnet1
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      Tags: 
+        - Key: 'Name'
+          Value: 'routeTable for pivateSubnet1'
+        - Key: 'Region'
+          Value: 'Singapore'
+        - Key: 'Environment'
+          Value: 'Non Production'
+      VpcId: 'vpc-07d7735219367024d'
+  privateSubnet1RTAssociation: #RT association for private subnet1 -
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: 'routeTableforprivateSubnet1'
+      SubnetId: 
+        Ref: 'privateSubnet1'
+  privateSubnet2: #PrivateSubnet2
+    Type: AWS::EC2::Subnet
+    Properties:
+        #AssignIpv6AddressOnCreation: Boolean
+        AvailabilityZone: 'ap-southeast-1b'
+        #AvailabilityZoneId: String
+        CidrBlock: '172.31.64.0/20'
+        #EnableDns64: Boolean
+        #Ipv6CidrBlock: String
+        #Ipv6Native: Boolean
+        MapPublicIpOnLaunch: false
+        #OutpostArn: String
+        #PrivateDnsNameOptionsOnLaunch: 
+        #  PrivateDnsNameOptionsOnLaunch
+        Tags: 
+          - Key: 'Name'
+            Value: 'default-private-subnet2'
+          - Key: 'Region'
+            Value: 'Singapore'
+          - Key: 'Environment'
+            Value: 'Non Production'
+        VpcId: 'vpc-07d7735219367024d'
+  routeTableforprivateSubnet2: #forprivateSubnet2
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      Tags: 
+        - Key: 'Name'
+          Value: 'routeTable for privateSubnet2'
+        - Key: 'Region'
+          Value: 'Singapore'
+        - Key: 'Environment'
+          Value: 'Non Production'
+      VpcId: 'vpc-07d7735219367024d'
+  privateSubnet2RTAssociation: #RT association for private subnet2 -
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: 'routeTableforprivateSubnet2'
+      SubnetId: 
+        Ref: 'privateSubnet2'
+  privateSubnet3: #PrivateSubnet3
+    Type: AWS::EC2::Subnet
+    Properties:
+        #AssignIpv6AddressOnCreation: Boolean
+        AvailabilityZone: 'ap-southeast-1c'
+        #AvailabilityZoneId: String
+        CidrBlock: '172.31.80.0/20'
+        #EnableDns64: Boolean
+        #Ipv6CidrBlock: String
+        #Ipv6Native: Boolean
+        MapPublicIpOnLaunch: false
+        #OutpostArn: String
+        #PrivateDnsNameOptionsOnLaunch: 
+        #  PrivateDnsNameOptionsOnLaunch
+        Tags: 
+         - Key: 'Name'
+           Value: 'default-private-subnet3'
+         - Key: 'Region'
+           Value: 'Singapore'
+         - Key: 'Environment'
+           Value: 'Non Production'
+        VpcId: 'vpc-07d7735219367024d'
+  routeTableforprivateSubnet3: #RT association for private subnet3 -
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      Tags: 
+        - Key: 'Name'
+          Value: 'routeTable for privateSubnet3'
+        - Key: 'Region'
+          Value: 'Singapore'
+        - Key: 'Environment'
+          Value: 'Non Production'
+      VpcId: 'vpc-07d7735219367024d'
+  privateSubnet3RTAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: 'routeTableforprivateSubnet3'
+      SubnetId: 
+        Ref: 'privateSubnet3'
